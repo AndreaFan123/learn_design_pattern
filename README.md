@@ -1,11 +1,5 @@
 # Learn Design Pattern
 
-## Objective
-
-- Learn design pattern
-- Understand the concept of design pattern
-- Apply design pattern in real world
-
 ## Content
 
 - [Creational Design Pattern](#creational-design-pattern)
