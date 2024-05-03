@@ -68,7 +68,7 @@ module.exports = {
 
 **Practice Scenario:**
 
-magine you are developing a product display application, where you need to show product images and detailed descriptions simultaneously. You can use the Split Screen mode, displaying product images on the left and product details and action buttons on the right. This allows users to view images while reading information
+Imagine you are developing a product display application, where you need to show product images and detailed descriptions simultaneously. You can use the Split Screen mode, displaying product images on the left and product details and action buttons on the right. This allows users to view images while reading information
 
 From above scenario, here is an example from real world:
 
@@ -89,7 +89,7 @@ Here are the basic implementation:
 
 > Check the `split-screen` directory for the implementation.
 
-### Optimizing the split screen layout
+#### Optimizing the split screen layout
 
 From time to time, we may need to adjust layout, so it wouldn't be a good idea to give them a fixed value for the flex property, so the better way to amend `flex:{number}` to whatever we need.
 
@@ -164,3 +164,7 @@ export default function ProductSplitScreen({
 ```
 
 > flex-1 is a shorthand for flex: 1 1 0%, which means it will take up the remaining space. The flex property is a shorthand for `flex-grow`, `flex-shrink`, and `flex-basis`.
+
+---
+
+### Modals
