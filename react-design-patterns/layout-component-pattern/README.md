@@ -1,16 +1,27 @@
 # Layout component design pattern
 
+## Table of contents
+
+- [Introduction](#introduction)
+- [Main concerns of the components and the idea behind the pattern](#main-concerns-of-the-components-and-the-idea-behind-the-pattern)
+- [Examples](#examples)
+- [Project Setup](#project-setup)
+- [Split screens](#split-screens)
+  - [Practice Scenario:](#practice-scenario)
+  - [Optimizing the split screen layout part 1: Dynamic flex property](#optimizing-the-split-screen-layout-part-1-dynamic-flex-property)
+  - [Optimizing the split screen layout part 2: Pass components as children](#optimizing-the-split-screen-layout-part-2-pass-components-as-children)
+- [List items](#list-items)
+
 ## Main concerns of the components and the idea behind the pattern
 
 Helping us to arrange other components that we create on the page, and the main idea is layout components shouldn't know where they are being displayed.
 
 ### Examples
 
-1. Split screens.
-2. Modals.
-3. List items.
-4. Holy grail layout.
-5. Real world case.
+1. [x] Split screens.
+2. [ ] Modals.
+3. [x] List items.
+4. [ ] Holy grail layout.
 
 ### Project Setup
 
@@ -66,7 +77,7 @@ module.exports = {
 
 ### Split screens
 
-**Practice Scenario:**
+#### Practice Scenario:
 
 Imagine you are developing a product display application, where you need to show product images and detailed descriptions simultaneously. You can use the Split Screen mode, displaying product images on the left and product details and action buttons on the right. This allows users to view images while reading information
 
@@ -87,7 +98,7 @@ Here are the basic implementation:
 
 ![split screen mobile](./split-screen/public/assets/split-screen-mobile.png)
 
-> Check the `split-screen` directory for the implementation.
+**Check the `split-screen` directory for the implementation.**
 
 #### Optimizing the split screen layout part 1: Dynamic flex property
 
@@ -267,4 +278,67 @@ export default function ProductDetails({
 
 ---
 
-### Modals
+### List items
+
+List is a very common component in web, there are order list, unordered list, and some of lists may have different styles, such as list items with icons, list items with images, etc.
+
+#### Practice Scenario:
+
+From my experience, I think the most common and complicated list is when it comes to display terms of use like below:
+
+![terms of use](./list-items/public/assets/terms-of-use.png)
+
+#### Thinking process:
+
+1. We need a sort of a container that allows us to pass different types of list items to it.
+2. the containers should be able to handle different types of list items, such as list items with icons, list items with images, etc.
+3. The list items should only be displayed content.
+
+**Check the `list-items` directory for the implementation.**
+
+#### Optimizing the list items layout part 1: Dynamic list items
+
+I think it would make list items more flexible if we can pass list style and start number as props, so I've amended the code like below:
+
+```tsx
+// App.tsx
+function App() {
+  return (
+    <main className="w-full max-w-full px-4 mt-4 lg:max-w-[1200px] mx-auto">
+      <div className="flex flex-col gap-3">
+        <OrderList
+          start={1}
+          listStyle="list-decimal"
+          items={productInfo}
+          sourceName="product"
+          itemComponent={MinProductInfo}
+        />
+
+        <UnorderList
+          listStyle="list-disc"
+          items={productInfo}
+          sourceName="product"
+          itemComponent={FullProductInfo}
+        />
+      </div>
+    </main>
+  );
+}
+```
+
+Here is what is looks like:
+
+![amend list item](./list-items/public/assets/amend-list-item.png)
+
+So if need to amend the order of the list items, let's say I want the list starts from 5, I can simply change the `start` prop to 5.
+
+```tsx
+// App.tsx
+<OrderList
+  start={5}
+  listStyle="list-decimal"
+  items={productInfo}
+  sourceName="product"
+  itemComponent={MinProductInfo}
+/>
+```
