@@ -1,18 +1,32 @@
-export default function ProductDetails() {
+interface ProductDetailsProps {
+  title?: string;
+  material?: string;
+  option?: string;
+  price?: string;
+  description?: string;
+}
+
+export default function ProductDetails({
+  title,
+  material,
+  option,
+  price,
+  description,
+}: ProductDetailsProps) {
   return (
     <div>
-      <h2>錶殼。 請從材質和外觀開始選擇。</h2>
+      <h2>{title}</h2>
       <div>
         <div>
-          <h3>鋁金屬</h3>
-          <span>可選擇 GPS 或 GPS + 行動網路</span>
+          <h3>{material}</h3>
+          <span>{option}</span>
         </div>
         <div>
-          <span>NT$13,500 起</span>
+          <span>{price}</span>
         </div>
       </div>
       <div>
-        <span>拉絲外觀搭配 Ion-X 強化玻璃顯示器。</span>
+        <span>{description}</span>
       </div>
     </div>
   );
