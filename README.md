@@ -5,7 +5,7 @@ This Repo mainly records some key points and examples of my learning in design p
 I hope to understand different design patterns and practice them through real-life examples.
 
 - [] React Design patterns
-  - [] Layout component Design Pattern
+  - [] Layout component Design Pattern (WIP)
   - [] HOC Design Pattern
   - [] Render Props Pattern
   - [] Hooks Pattern
