@@ -205,7 +205,7 @@ export default function ProductSplitScreen({
 }
 ```
 
-By implementing the above changes, we can pass props inside the `ProductImage` and `ProductDetails` easily.
+By implementing the above changes, we can pass props inside the `ProductImage` and `ProductDetails` easily, compare to the previous implementation, we would need to add props in `App.tsx`, and pass as props inside `ProductSplitScreen` component, then to the `ProductImage` and `ProductDetails` component.
 
 ```tsx
 // App.tsx
