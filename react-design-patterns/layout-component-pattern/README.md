@@ -11,6 +11,9 @@
   - [Optimizing the split screen layout part 1: Dynamic flex property](#optimizing-the-split-screen-layout-part-1-dynamic-flex-property)
   - [Optimizing the split screen layout part 2: Pass components as children](#optimizing-the-split-screen-layout-part-2-pass-components-as-children)
 - [List items](#list-items)
+  - [Practice Scenario:](#practice-scenario-1)
+  - [Thinking process:](#thinking-process)
+  - [Optimizing the list items layout part 1: Dynamic list items](#optimizing-the-list-items-layout-part-1-dynamic-list-items)
 
 ## Main concerns of the components and the idea behind the pattern
 
