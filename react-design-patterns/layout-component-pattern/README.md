@@ -68,7 +68,7 @@ module.exports = {
 
 **Practice Scenario:**
 
-magine you are developing a product display application, where you need to show product images and detailed descriptions simultaneously. You can use the Split Screen mode, displaying product images on the left and product details and action buttons on the right. This allows users to view images while reading information
+Imagine you are developing a product display application, where you need to show product images and detailed descriptions simultaneously. You can use the Split Screen mode, displaying product images on the left and product details and action buttons on the right. This allows users to view images while reading information
 
 From above scenario, here is an example from real world:
 
