@@ -76,3 +76,91 @@ From above scenario, here is an example from real world:
 
 - The left side of the screen displays the product image.
 - The right side of the screen displays the product details.
+
+Here are the basic implementation:
+
+**Desktop**
+
+![split screen desktop](./split-screen/public/assets/split-screen-desktop.png)
+
+**Mobile**
+
+![split screen mobile](./split-screen/public/assets/split-screen-mobile.png)
+
+> Check the `split-screen` directory for the implementation.
+
+### Optimizing the split screen layout
+
+From time to time, we may need to adjust layout, so it wouldn't be a good idea to give them a fixed value for the flex property, so the better way to amend `flex:{number}` to whatever we need.
+
+```tsx
+interface productSplitScreenProps {
+  left: React.ComponentType;
+  right: React.ComponentType;
+}
+
+export default function ProductSplitScreen({
+  left: LeftScreen,
+  right: RightScreen,
+}: productSplitScreenProps) {
+  return (
+    <div className="flex flex-col lg:flex-row gap-6 ">
+      <div className="flex-1">
+        <LeftScreen />
+      </div>
+      <div className="flex-1">
+        <RightScreen />
+      </div>
+    </div>
+  );
+}
+```
+
+Back to `App.tsx`, let's add additional props to the `ProductSplitScreen` component:
+
+```tsx
+function App() {
+  return (
+    <main className="w-full max-w-full h-full px-4 md:max-w-[900px] lg:max-w-[1200px] xl:max-w-[1440px]">
+      <h1 className="text-2xl font-bold pb-2">...</h1>
+      <ProductSplitScreen
+        left={ProductImage}
+        right={ProductDetails}
+        leftWeight={3}
+        rightWeight={1}
+      />
+    </main>
+  );
+}
+```
+
+Then update the `ProductSplitScreen` component:
+
+```tsx
+interface productSplitScreenProps {
+  left: React.ComponentType;
+  right: React.ComponentType;
+  leftWeight: number;
+  rightWeight: number;
+}
+
+export default function ProductSplitScreen({
+  left: LeftScreen,
+  right: RightScreen,
+  leftWeight,
+  rightWeight,
+}: productSplitScreenProps) {
+  return (
+    <div className="flex flex-col lg:flex-row gap-6 ">
+      <div className={`flex-${leftWeight}`}>
+        <LeftScreen />
+      </div>
+      <div className={`flex-${rightWeight}`}>
+        <RightScreen />
+      </div>
+    </div>
+  );
+}
+```
+
+> flex-1 is a shorthand for flex: 1 1 0%, which means it will take up the remaining space. The flex property is a shorthand for `flex-grow`, `flex-shrink`, and `flex-basis`.
