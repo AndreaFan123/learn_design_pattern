@@ -4,25 +4,25 @@ This Repo mainly records some key points and examples of my learning in design p
 ## Objective:
 I hope to understand different design patterns and practice them through real-life examples.
 
-- [] React Design patterns
-  - [] Layout component Design Pattern (WIP)
-  - [] HOC Design Pattern
-  - [] Render Props Pattern
-  - [] Hooks Pattern
-  - [] Compound Pattern
+- [ ] React Design patterns
+  - [ ] Layout component Design Pattern (WIP)
+  - [ ] HOC Design Pattern
+  - [ ] Render Props Pattern
+  - [ ] Hooks Pattern
+  - [ ] Compound Pattern
 
-- [] JavaScript Design Patterns
-  - [] Creational Design Patterns
-    - [] Singleton Pattern
-    - [] Factory Pattern
-    - [] Prototype Pattern
-  - [] Structural Patterns
-    - [] Adapter Pattern
-    - [] Decorator Pattern
-    - [] Proxy Pattern
-  - [] Behaviour Design Patterns
-    - [] Observer Pattern
-    - [] Strategy Pattern   
+- [ ] JavaScript Design Patterns
+  - [ ] Creational Design Patterns
+    - [ ] Singleton Pattern
+    - [ ] Factory Pattern
+    - [ ] Prototype Pattern
+  - [ ] Structural Patterns
+    - [ ] Adapter Pattern
+    - [ ] Decorator Pattern
+    - [ ] Proxy Pattern
+  - [ ] Behaviour Design Patterns
+    - [ ] Observer Pattern
+    - [ ] Strategy Pattern   
 
 ## Learning Resources
 1. [Patterns Dev](https://www.patterns.dev/)
