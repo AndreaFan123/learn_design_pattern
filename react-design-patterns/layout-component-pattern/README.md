@@ -89,7 +89,7 @@ Here are the basic implementation:
 
 > Check the `split-screen` directory for the implementation.
 
-#### Optimizing the split screen layout
+#### Optimizing the split screen layout part 1: Dynamic flex property
 
 From time to time, we may need to adjust layout, so it wouldn't be a good idea to give them a fixed value for the flex property, so the better way to amend `flex:{number}` to whatever we need.
 
@@ -119,6 +119,7 @@ export default function ProductSplitScreen({
 Back to `App.tsx`, let's add additional props to the `ProductSplitScreen` component:
 
 ```tsx
+// App.tsx
 function App() {
   return (
     <main className="w-full max-w-full h-full px-4 md:max-w-[900px] lg:max-w-[1200px] xl:max-w-[1440px]">
@@ -137,6 +138,7 @@ function App() {
 Then update the `ProductSplitScreen` component:
 
 ```tsx
+// product-split-screen.tsx
 interface productSplitScreenProps {
   left: React.ComponentType;
   right: React.ComponentType;
@@ -164,6 +166,104 @@ export default function ProductSplitScreen({
 ```
 
 > flex-1 is a shorthand for flex: 1 1 0%, which means it will take up the remaining space. The flex property is a shorthand for `flex-grow`, `flex-shrink`, and `flex-basis`.
+
+#### Optimizing the split screen layout part 2: Pass components as children
+
+We can also pass `ProductImage` and `ProductDetails` as children to the `ProductSplitScreen` component as this is more readable and easier to understand.
+
+```tsx
+// App.tsx
+<ProductSplitScreen leftWeight={1} rightWeight={3}>
+  <ProductImage />
+  <ProductDetails />
+</ProductSplitScreen>
+```
+
+Then update the `ProductSplitScreen` component:
+
+```tsx
+// product-split-screen.tsx
+interface productSplitScreenProps {
+  children: React.ReactNode;
+  leftWeight: number;
+  rightWeight: number;
+}
+
+export default function ProductSplitScreen({
+  children,
+  leftWeight = 1,
+  rightWeight = 1,
+}: productSplitScreenProps) {
+  const [left, right] = React.Children.toArray(children);
+
+  return (
+    <div className="flex flex-col lg:flex-row gap-6 ">
+      <div className={`flex-${leftWeight}`}>{left}</div>
+      <div className={`flex-${rightWeight}`}>{right}</div>
+    </div>
+  );
+}
+```
+
+By implementing the above changes, we can pass props inside the `ProductImage` and `ProductDetails` easily.
+
+```tsx
+// App.tsx
+function App() {
+  return (
+    <main className="w-full max-w-full h-full px-4 md:max-w-[900px] lg:max-w-[1200px] xl:max-w-[1440px]">
+      <h1 className="text-2xl font-bold pb-2">購買 Apple Watch Series 9</h1>
+      <ProductSplitScreen leftWeight={1} rightWeight={3}>
+        <ProductImage />
+        <ProductDetails
+          title="錶殼。 請從材質和外觀開始選擇。"
+          material="鋁金屬"
+          option="可選擇 GPS 或 GPS + 行動網路"
+          price="NT$13,500 起"
+          description="拉絲外觀搭配 Ion-X 強化玻璃顯示器。"
+        />
+      </ProductSplitScreen>
+    </main>
+  );
+}
+```
+
+```tsx
+// ProductDetails.tsx
+interface ProductDetailsProps {
+  title: string;
+  material: string;
+  option: string;
+  price: string;
+  description: string;
+}
+
+export default function ProductDetails({
+  title,
+  material,
+  option,
+  price,
+  description,
+}: ProductDetailsProps) {
+  return (
+    <div>
+      <h2>{title}</h2>
+      <div>
+        <div>
+          <h3>{material}</h3>
+          <span>{option}</span>
+        </div>
+        <div>
+          <span>{price}</span>
+        </div>
+      </div>
+      <div>
+        <span>{description}</span>
+      </div>
+    </div>
+  );
+}
+```
 
 ---
 
