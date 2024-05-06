@@ -1,16 +1,16 @@
 import { useState } from "react";
-import Modal from "./components/modal";
+import Modal from "./modal";
 
-const loginAlertMessage = {
-  type: "Login",
+const accountDeleteAlertMessage = {
+  type: "Account deleted",
   content: {
-    title: "Login",
-    content: "Please enter your username and password",
+    title: "Account deleted",
+    content: "Are you sure you want to delete your account?",
   },
   buttons: [
     {
       type: "primary",
-      text: "Login",
+      text: "Delete",
     },
     {
       type: "secondary",
@@ -19,7 +19,7 @@ const loginAlertMessage = {
   ],
 };
 
-function App() {
+function DeleteAccount() {
   const [isShown, setIsShown] = useState(false);
 
   const handleLogin = () => {
@@ -28,7 +28,7 @@ function App() {
 
   const handleRightButton = () => {
     // Change logic accordingly
-    alert("You've clicked login button");
+    alert("You have clicked the delete button");
   };
 
   const handleLeftButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -38,19 +38,19 @@ function App() {
   };
   return (
     <>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin}>Delete Account</button>
       {isShown && (
         <Modal
-          rightButton={loginAlertMessage.buttons[0]}
-          leftButton={loginAlertMessage.buttons[1]}
+          rightButton={accountDeleteAlertMessage.buttons[0]}
+          leftButton={accountDeleteAlertMessage.buttons[1]}
           onRightButton={handleRightButton}
           onLeftButton={handleLeftButton}
         >
-          {loginAlertMessage.content}
+          {accountDeleteAlertMessage.content}
         </Modal>
       )}
     </>
   );
 }
 
-export default App;
+export default DeleteAccount;

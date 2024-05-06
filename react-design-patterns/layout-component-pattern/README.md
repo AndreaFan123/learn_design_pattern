@@ -14,6 +14,10 @@
   - [Practice Scenario:](#practice-scenario-1)
   - [Thinking process:](#thinking-process)
   - [Optimizing the list items layout part 1: Dynamic list items](#optimizing-the-list-items-layout-part-1-dynamic-list-items)
+- [Modals](#modals)
+  - [Practice Scenario:](#practice-scenario-2)
+  - [Thinking process:](#thinking-process-1)
+  - [Optimizing the modal layout part 1: Make it more readable](#optimizing-the-modal-layout-part-1-make-it-more-readable)
 
 ## Main concerns of the components and the idea behind the pattern
 
@@ -22,9 +26,8 @@ Helping us to arrange other components that we create on the page, and the main 
 ### Examples
 
 1. [x] Split screens.
-2. [ ] Modals.
+2. [x] Modals.
 3. [x] List items.
-4. [ ] Holy grail layout.
 
 ### Project Setup
 
@@ -344,4 +347,151 @@ So if need to amend the order of the list items, let's say I want the list start
   sourceName="product"
   itemComponent={MinProductInfo}
 />
+```
+
+---
+
+### Modals
+
+Modals are a very common UI in web development, it is used to display content on top of the current page with some sort of warning, message, or confirmation, in real life cases, for example an e-commerce website, or food ordering website, it may have lot of alert messages, or confirmation messages.
+
+Making a modal component that receives titles, content, and buttons as props, and the modal should be able to handle different types of buttons, such as primary, secondary, and danger buttons.
+
+#### Practice Scenario:
+
+Let's say we are building a modal for login and delete account, the modal should have a title, content, and buttons, and the modal should be able to handle different types of buttons.
+
+For login, the common alert messages would be like below:
+
+```json
+// login.json
+{
+  "title": "Login",
+  "content": "Please enter your username and password",
+  "buttons": [
+    {
+      "type": "primary",
+      "text": "Login"
+    },
+    {
+      "type": "secondary",
+      "text": "Cancel"
+    }
+  ]
+}
+```
+
+For delete account, the common alert messages would be like below:
+
+```json
+// delete-account.json
+{
+  "title": "Delete Account",
+  "content": "Are you sure you want to delete your account?",
+  "buttons": [
+    {
+      "type": "danger",
+      "text": "Delete"
+    },
+    {
+      "type": "secondary",
+      "text": "Cancel"
+    }
+  ]
+}
+```
+
+#### Thinking process:
+
+1. A modal is a component to show important message or confirmation, therefore it needs to be bale to handle different types of buttons or content.
+2. First of all, create a `Modal` component that receive props for title, content, and buttons.
+
+**Check the `modals` directory for the implementation.**
+
+#### Optimizing the modal layout part 1: Make it more readable
+
+We can extract part of the modal to be a separate component, so it would be more readable and easier to understand, for example:
+
+```tsx
+// Extract modal overlay and modal content body to separate components
+
+// modal-overlay.tsx
+export default function ModalOverlay({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="absolute bg-black/70 top-0 left-0 z-40 w-full h-screen">
+      {children}
+    </div>
+  );
+}
+
+// modal-body.tsx
+export default function ModalBody({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="bg-white mx-auto my-[10%] py-5 px-10 w-[30%] rounded-md">
+      {children}
+    </div>
+  );
+}
+```
+
+And import them in the `Modal` component:
+
+```tsx
+export default function Modal({
+  children,
+  rightButton,
+  leftButton,
+  onLeftButton,
+  onRightButton,
+}: modalProps) {
+  const renderButtonBg = (type?: string) => {
+    switch (type) {
+      case "primary":
+        return "bg-indigo-800 text-white ";
+      case "secondary":
+        return "bg-gray-300";
+      default:
+        return "bg-gray-300";
+    }
+  };
+  return (
+    <>
+      <ModalOverlay>
+        <ModalBody>
+          <div
+            className="flex flex-col items-center
+          gap-7"
+          >
+            ...
+          </div>
+        </ModalBody>
+      </ModalOverlay>
+    </>
+  );
+}
+```
+
+Something like `shadcn` below:
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger>Open</AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
 ```
