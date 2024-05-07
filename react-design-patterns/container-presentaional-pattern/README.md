@@ -7,6 +7,7 @@
 - [Project Setup](#project-setup)
 - [User profile](#user-profile)
   - [Practice Scenario](#practice-scenario)
+  - [Steps](#steps)
 
 ## Main concerns of the components and the idea behind the pattern
 
@@ -77,3 +78,14 @@ module.exports = {
 #### Practice Scenario:
 
 User profile may be the most common UI in any application, it allows user to see their information and update it.
+
+#### Steps:
+
+1. Create a component called `UserProfileContainer` component that will fetch the user data from an API, and pass it to the `UserProfile` component.
+2. Create a component called `UserProfile` that will display the user data.
+
+**Check the `user-profile` directory for the implementation.**
+
+#### Options:
+
+We can use hooks to fetch data without having container components.
