@@ -31,7 +31,7 @@ Helping us to arrange other components that we create on the page, and the main 
 
 ### Project Setup
 
-- Inside the `split-screen` directory, run the following command to install the dependencies:
+- Inside the project directory, run the following command to install the dependencies:
 
 ```bash
 # npm 7+, extra double-dash is needed:

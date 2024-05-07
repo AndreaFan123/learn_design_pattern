@@ -10,7 +10,7 @@ I hope to understand different design patterns and practice them through real-li
 
   - [x] Layout component Design Pattern
   - [ ] HOC Pattern
-  - [ ] Container/presentational Pattern
+  - [ ] Container/presentational Pattern (WIP)
   - [ ] Render Props Pattern
   - [ ] Hooks Pattern
   - [ ] Compound Pattern
