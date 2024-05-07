@@ -1,7 +1,12 @@
+import React from "react";
+import UserProfileContainer from "./components/user-profile-container";
+// import UserProfileForm from "./components/user-profile-form";
+
 function App() {
   return (
     <div>
-      <h1>HEllO</h1>
+      <UserProfileContainer />
+      {/* <UserProfileForm /> */}
     </div>
   );
 }
