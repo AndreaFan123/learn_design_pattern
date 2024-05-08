@@ -8,6 +8,11 @@
 - [User profile](#user-profile)
   - [Practice Scenario](#practice-scenario)
   - [Steps](#steps)
+  - [Options](#options)
+- [News feed](#news-feed)
+  - [Practice Scenario](#practice-scenario])
+  - [Steps](#steps)
+  - [Options](#options)
 
 ## Main concerns of the components and the idea behind the pattern
 
@@ -17,9 +22,8 @@
 
 ### Examples
 
-1. [ ] User profile
-2. [ ] Houses list
-3. [ ] News feed
+1. [x] User profile
+2. [x] News feed
 
 ### Project Setup
 
@@ -82,10 +86,31 @@ User profile may be the most common UI in any application, it allows user to see
 #### Steps:
 
 1. Create a component called `UserProfileContainer` component that will fetch the user data from an API, and pass it to the `UserProfile` component.
-2. Create a component called `UserProfile` that will display the user data.
+2. The Api we will be using is [Random user](https://randomuser.me/api/).
+3. Create a component called `UserProfile` that will display the user data.
 
 **Check the `user-profile` directory for the implementation.**
 
 #### Options:
 
 We can use hooks to fetch data without having container components.
+
+---
+
+### News feed
+
+Same as the user profile, we need to fetch the data first inside of container component, and pass it to the presentational component.
+
+#### Practice Scenario:
+
+Create a news headline component that will fetch the news from an API that allow users to check the latest news.
+
+#### Steps:
+
+1. Create a component called `newsListingContainer` component that will fetch the news data from an API, and pass it to the `newsHeadline` component.
+2. The Api we will be using is [News API](https://newsapi.org/).
+3. Create a component called `newsHeadline` that will display the news data.
+
+#### Options:
+
+Same as the user profile, we can use hooks to fetch data without having container components.
