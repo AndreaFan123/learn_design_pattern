@@ -33,10 +33,10 @@ const withHOC = (Component) => {
 
 ### Examples
 
-1. [ ] Error boundary
+1. [ ] Data fetching
 2. [ ] Translations
 3. [ ] Authentication
-4. [ ] Data fetching
+4. [ ] Error boundary
 
 ### Project Setup
 

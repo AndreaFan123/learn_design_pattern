@@ -9,8 +9,8 @@ I hope to understand different design patterns and practice them through real-li
 - [ ] React Design patterns
 
   - [x] Layout component Design Pattern
-  - [ ] HOC Pattern
-  - [ ] Container/presentational Pattern (WIP)
+  - [ ] HOC Pattern (WIP)
+  - [x] Container/presentational Pattern
   - [ ] Render Props Pattern
   - [ ] Hooks Pattern
   - [ ] Compound Pattern
@@ -24,7 +24,7 @@ I hope to understand different design patterns and practice them through real-li
     - [ ] Adapter Pattern
     - [ ] Decorator Pattern
     - [ ] Proxy Pattern
-  - [ ] Behaviour Design Patterns
+  - [ ] Behavioral Design Patterns
     - [ ] Observer Pattern
     - [ ] Strategy Pattern
 
