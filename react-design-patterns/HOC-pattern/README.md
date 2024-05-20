@@ -89,3 +89,104 @@ module.exports = {
 ```
 
 ---
+
+### Data fetching
+
+Similar to the container-presentational pattern, normally we will fetch data in the container component and pass it down to the presentational component. However, we can also use a HOC to fetch data and pass it down to the component.
+
+First we create a HOC that fetches data, check folder `hoc-fetch-data`.
+
+```jsx
+export default function HocFetchData(
+  Component: FunctionComponent<{
+    products?: Product[],
+    error: boolean,
+    isLoading: boolean,
+  }>,
+  url: string
+) {
+  function ComponentWithProps(props) {
+    const [data, setData] = useState({
+      data: props.products,
+      error: props.error,
+      isLoading: props.isLoading,
+    });
+
+    const fetchData = async () => {
+      setData({ data: null, error: false, isLoading: true });
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data) {
+          setData({
+            data: data,
+            error: false,
+            isLoading: false,
+          });
+        }
+      } catch (error) {
+        setData({
+          data: null,
+          error: error,
+          isLoading: false,
+        });
+      }
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    if (data.isLoading) {
+      return <div>Loading...</div>;
+    }
+
+    if (data.error) {
+      return <div>Something went wrong</div>;
+    }
+
+    return (
+      <Component
+        products={data.data?.products}
+        error={data.error}
+        isLoading={data.isLoading}
+      />
+    );
+  }
+  return ComponentWithProps;
+}
+```
+
+Let's break down the code above:
+
+1. The HOC takes two arguments, the component and the URL to fetch the data.
+2. The HOC returns a new component that fetches the data and passes it down to the component.
+3. The new component has a state to store the data, error, and loading state.
+4. It fetches the data when the component mounts and updates the state accordingly.
+5. It renders the loading state if the data is loading.
+6. It renders the error state if there is an error.
+7. It renders the component with the data if the data is fetched successfully.
+
+> If we write something like return (props) => {...}, TS will yell at us with th following error: React Hook “useState” cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function.
+>
+> That's why we need to create a new function that returns the component with the props.
+
+Next, inside `App.tsx`, we use the HOC to fetch data and pass it down to the component.
+
+```jsx
+function App() {
+  const ProductListWrapped = HocFetchData(
+    ProductList,
+    "https://dummyjson.com/products"
+  );
+  return (
+    <div className="App">
+      <ProductListWrapped />
+    </div>
+  );
+}
+```
+
+#### How can we optimize?
+
+The way I defined props in the HOC was not generic, if we fetch different data, we need to change the props in the HOC. We can use generics to make it more generic.
