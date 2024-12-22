@@ -11,8 +11,8 @@ I'll be focusing on several design patterns for frontend development specificall
 
 For JavaScript, I'll be focusing on the following design patterns:
 
-- [ ]Observer (Behavioral)
-- [ ]Factory (Creational)
+- [ ] Observer (Behavioral)
+- [ ] Factory (Creational)
 - [ ] Strategy (Behavioral)
 - [ ] Facade (Structural)
 
